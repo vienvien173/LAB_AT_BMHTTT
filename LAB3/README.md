@@ -25,16 +25,16 @@
 
 ### 2.2. Công cụ sử dụng
 
-| Công cụ | Phiên bản yêu cầu | Trạng thái |
+| Công cụ | Phiên bản yêu cầu | 
 |---|---:|:---:|
-| Python | 3.14.7 | [PASS/FAIL] |
-| Wireshark | 4.6.8 Stable | [PASS/FAIL] |
-| Npcap | Đi kèm Wireshark | [PASS/FAIL] |
-| Sysmon | 15.22 | [PASS/FAIL] |
-| Autoruns | 14.3 | [PASS/FAIL] |
-| Process Explorer | 17.14 | [PASS/FAIL] |
+| Python | 3.14.7 | 
+| Wireshark | 4.6.8 Stable | 
+| Npcap | Đi kèm Wireshark |
+| Sysmon | 15.22 | 
+| Autoruns | 14.3 | 
+| Process Explorer | 17.14 | 
 | PowerShell | 5.1 | [PASS/FAIL] |
-| Microsoft Defender Antivirus | Có | [PASS/FAIL] |
+| Microsoft Defender Antivirus | Có |
 
 ---
 
