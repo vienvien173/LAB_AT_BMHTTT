@@ -56,7 +56,6 @@ Hệ thống gồm ba vùng mạng chính:
 | DMZ-Web | DMZ | 172.16.0.2/16 | IIS Web Server |
 | Máy thật | VMnet1 | 10.0.0.100/8 | Quản trị pfSense |
 
-Lưu ý: Địa chỉ WAN được cấp bằng DHCP nên có thể thay đổi.
 
 ### 3.4. Cấu hình VMware Network
 
@@ -272,35 +271,6 @@ Firewall pfSense đã chặn thành công ICMP Echo Request từ LAN, đồng th
 
 **Trạng thái:** HOÀN THÀNH.
 
-### 6.2. Tình huống 2 – Chỉ cho phép một host ra Internet
-
-**Mục tiêu:**
-
-Chỉ cho phép host `10.0.0.2` truy cập Internet, đồng thời hạn chế các host LAN khác.
-
-**Các bước đã thực hiện:**
-
-1. Disable rule Block ICMP của Tình huống 1.
-2. Disable rule Pass LAN subnets đến Any.
-3. Giữ nguyên Anti-Lockout Rule.
-4. Giữ các rule mặc định ở trạng thái Disabled.
-5. Apply Changes.
-
-**Cấu hình rule dự kiến:**
-
-| Thuộc tính | Giá trị |
-|---|---|
-| Action | Pass |
-| Interface | LAN |
-| Address Family | IPv4 |
-| Protocol | Any |
-| Source | 10.0.0.2 |
-| Destination | Any |
-
-**Trạng thái:** ĐANG THỰC HIỆN.
-
-Chưa có kết quả kiểm thử xác nhận rằng chỉ host `10.0.0.2` được truy cập Internet và các host khác bị chặn.
-
 ## 7. Lỗi gặp phải và cách khắc phục
 
 | Lỗi / Hiện tượng | Nguyên nhân | Cách xử lý |
@@ -324,19 +294,8 @@ Chưa có kết quả kiểm thử xác nhận rằng chỉ host `10.0.0.2` đư
 | 6 | Cấu hình Firewall Rule LAN | PASS |
 | 7 | Kiểm thử bật/tắt rule LAN | PASS |
 | 8 | Tình huống 1 – Block ICMP, Allow DNS/HTTPS | PASS |
-| 9 | Tình huống 2 – Chỉ cho phép một host | Chưa hoàn thành |
+| 9 | Tình huống 2 – Chỉ cho phép một host | Chưa thực hiện |
 | 10 | Cô lập DMZ khỏi LAN | Chưa thực hiện |
 | 11 | Port Forward WAN đến DMZ | Chưa thực hiện |
 | 12 | Bật Logging và kiểm tra Firewall Log | Chưa thực hiện |
 
-## 9. Kết luận
-
-Trong quá trình thực hiện bài lab, hệ thống mạng ảo đã được triển khai với ba vùng WAN, LAN và DMZ thông qua pfSense trên VMware Workstation.
-
-Sinh viên đã thực hiện cấu hình địa chỉ IP, Domain Controller, DNS Server, IIS Web Server, Outbound NAT và các Firewall Rule cơ bản.
-
-Kết quả kiểm thử cho thấy pfSense có khả năng kiểm soát lưu lượng mạng dựa trên các chính sách được cấu hình. Khi rule LAN được bật, máy trong mạng nội bộ có thể truy cập Internet. Khi rule bị tắt, lưu lượng bị chặn theo chính sách Firewall.
-
-Đặc biệt, Tình huống 1 đã chứng minh khả năng chặn ICMP Echo Request mà không làm gián đoạn hoạt động phân giải DNS và kết nối HTTPS.
-
-Bài lab hiện dừng ở giai đoạn triển khai Tình huống 2. Các tình huống còn lại sẽ được tiếp tục thực hiện và kiểm thử trong các bước tiếp theo.
